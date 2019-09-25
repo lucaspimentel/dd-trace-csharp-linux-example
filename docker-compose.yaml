@@ -22,7 +22,7 @@ services:
       dockerfile: Dockerfile
     command: wait-for-it redis:6379 -- wait-for-it ddagent:8126 -- dotnet /app/dd-trace-csharp-linux-example.dll
     environment:
-    - DD_TRACE_AGENT_HOSTNAME=ddagent
+    - DD_TRACE_AGENT_URL=http://ddagent:8126
     depends_on:
     - ddagent
     - redis
