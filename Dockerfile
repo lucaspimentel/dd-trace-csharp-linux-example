@@ -7,7 +7,7 @@ RUN dotnet restore
 COPY Program.cs /src/
 RUN dotnet publish -c Release
 
-FROM mcr.microsoft.com/dotnet/core/runtime:3.0
+FROM mcr.microsoft.com/dotnet/core/runtime:2.1
 
 RUN apt-get update && apt-get install -y bash curl
 
