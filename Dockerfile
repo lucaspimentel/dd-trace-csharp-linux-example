@@ -7,8 +7,23 @@ RUN dotnet restore
 COPY Program.cs /src/
 RUN dotnet publish -c Release
 
-FROM mcr.microsoft.com/dotnet/core/runtime:2.1
+# Ubuntu 18.04
+FROM mcr.microsoft.com/dotnet/core/runtime:2.1-bionic
+
+# Debian 9
+#FROM mcr.microsoft.com/dotnet/core/runtime:2.1-stretch-slim
+
+# Ubuntu, Debian
 RUN apt-get update && apt-get install -y bash curl
+
+# Alpine 3.7
+#FROM mcr.microsoft.com/dotnet/core/runtime:2.1-alpine3.7
+
+# Alpine 3.9
+#FROM mcr.microsoft.com/dotnet/core/runtime:2.1-alpine3.9
+
+# Alpine 3.7 or 3.9
+#RUN apk add bash curl libc6-compat
 
 RUN mkdir -p /opt/datadog
 RUN curl -L https://github.com/DataDog/dd-trace-dotnet/releases/download/v1.7.0/datadog-dotnet-apm-1.7.0.tar.gz | \
