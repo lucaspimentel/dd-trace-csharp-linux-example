@@ -8,7 +8,6 @@ COPY Program.cs /src/
 RUN dotnet publish -c Release
 
 FROM mcr.microsoft.com/dotnet/core/runtime:2.1
-
 RUN apt-get update && apt-get install -y bash curl
 
 RUN mkdir -p /opt/datadog
@@ -22,5 +21,8 @@ ENV DD_INTEGRATIONS=/opt/datadog/integrations.json
 
 RUN curl -L -o /bin/wait-for-it https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
     chmod +x /bin/wait-for-it
+
+COPY with-profiler-logs.bash /bin/with-profiler-logs
+RUN chmod +x /bin/with-profiler-logs
 
 COPY --from=build /src/bin/Release/netcoreapp2.1/publish/ /app
