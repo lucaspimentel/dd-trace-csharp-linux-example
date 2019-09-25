@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y bash curl
 
 RUN mkdir -p /opt/datadog
 RUN curl -L https://github.com/DataDog/dd-trace-dotnet/releases/download/v1.7.0/datadog-dotnet-apm-1.7.0.tar.gz | \
-    tar xzf - -C /opt/datadog --strip 3
+    tar xzf - -C /opt/datadog
 
 ENV CORECLR_ENABLE_PROFILING=1
 ENV CORECLR_PROFILER={846F5F1C-F9AE-4B07-969E-05C26BC060D8}
