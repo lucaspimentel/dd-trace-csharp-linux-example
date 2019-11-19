@@ -9,21 +9,16 @@ RUN dotnet publish -c Release
 
 # Ubuntu 18.04
 #FROM mcr.microsoft.com/dotnet/core/runtime:3.0-bionic
+#RUN apt-get update && apt-get install -y bash curl
 
 # Debian 9
 #FROM mcr.microsoft.com/dotnet/core/runtime:3.0-stretch-slim
-
-# Ubuntu, Debian
 #RUN apt-get update && apt-get install -y bash curl
 
-# Alpine 3.7
-#FROM mcr.microsoft.com/dotnet/core/runtime:3.0-alpine3.7
-
-# Alpine 3.9
-FROM mcr.microsoft.com/dotnet/core/runtime:3.0-alpine3.9
-
-# Alpine 3.7 or 3.9
-#RUN apk add bash curl libc6-compat
+# Alpine
+FROM mcr.microsoft.com/dotnet/core/runtime:3.0-alpine3.10
+RUN apk --no-cache update && apk add bash curl
+RUN apk add libc6-compat gcompat
 
 RUN mkdir -p /opt/datadog
 ENV DD_APM_VERSION=1.9.0
