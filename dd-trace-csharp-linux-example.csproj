@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Datadog.Trace" Version="1.7.0" />
-    <PackageReference Include="Datadog.Trace.ClrProfiler.Managed" Version="1.7.0" />
     <PackageReference Include="StackExchange.Redis" Version="1.2.6" />
   </ItemGroup>
 
