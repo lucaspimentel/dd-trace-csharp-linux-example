@@ -8,19 +8,19 @@ COPY Program.cs /src/
 RUN dotnet publish -c Release
 
 # Ubuntu 18.04
-FROM mcr.microsoft.com/dotnet/core/runtime:2.1-bionic
+#FROM mcr.microsoft.com/dotnet/core/runtime:3.0-bionic
 
 # Debian 9
-#FROM mcr.microsoft.com/dotnet/core/runtime:2.1-stretch-slim
+#FROM mcr.microsoft.com/dotnet/core/runtime:3.0-stretch-slim
 
 # Ubuntu, Debian
-RUN apt-get update && apt-get install -y bash curl
+#RUN apt-get update && apt-get install -y bash curl
 
 # Alpine 3.7
-#FROM mcr.microsoft.com/dotnet/core/runtime:2.1-alpine3.7
+#FROM mcr.microsoft.com/dotnet/core/runtime:3.0-alpine3.7
 
 # Alpine 3.9
-#FROM mcr.microsoft.com/dotnet/core/runtime:2.1-alpine3.9
+FROM mcr.microsoft.com/dotnet/core/runtime:3.0-alpine3.9
 
 # Alpine 3.7 or 3.9
 #RUN apk add bash curl libc6-compat
@@ -40,4 +40,4 @@ RUN curl -L -o /bin/wait-for-it https://raw.githubusercontent.com/vishnubob/wait
 COPY with-profiler-logs.bash /bin/with-profiler-logs
 RUN chmod +x /bin/with-profiler-logs
 
-COPY --from=build /src/bin/Release/netcoreapp2.1/publish/ /app
+COPY --from=build /src/bin/Release/netcoreapp3.0/publish/ /app
